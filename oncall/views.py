@@ -80,7 +80,7 @@ def event_feed(request):
         #event_end_timestamp = time.mktime(event.event_end.timetuple())
         tmp['start'] = event.event_start
         tmp['end'] = event.event_end
-        tmp['data_url'] = '/oncall/update' + '/' + str(event.id)
+        tmp['data_url'] = '/update' + '/' + str(event.id)
         tmp['className'] = 'js-update-event'
         tmp['borderColor'] = 'white'
         if(event.event_type.event_type_name == 'On call'):
