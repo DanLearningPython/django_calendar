@@ -1,0 +1,11 @@
+Django==1.10.6
+django-bootstrap-datetimepicker==1.5
+django-widget-tweaks==1.4.1
+mysqlclient==1.3.9
+PyLD==0.7.1
+PyMySQL==0.7.9
+python-dateutil==2.4.2
+requests==2.13.0
+SQLAlchemy==1.0.6
+virtualenv==15.1.0
+virtualenvwrapper-win==1.2.1

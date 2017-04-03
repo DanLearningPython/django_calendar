@@ -1,0 +1,74 @@
+{% extends "./base.html" %}
+
+{% load static %}
+
+{% block javascript %}
+  <script src="{% static 'oncall/js/events.js' %}"></script>
+{% endblock %}
+{% block content %}
+    <h1 class="page-header">Calendar</h1>
+      <p>
+        <button type="button" class="btn btn-primary js-create-event" data-url="{% url 'event_create' %}">
+          <span class="glyphicon glyphicon-plus"></span>
+          New event
+        </button>
+      </p>
+    <div id="calendar"></div>
+
+    <div class="modal fade" id="modal-event">
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+          </div>
+        </div>
+    </div>
+<script>
+$(document).ready(function() {
+
+var todayDate = moment().startOf('day');
+	var YM = todayDate.format('YYYY-MM');
+	var YESTERDAY = todayDate.clone().subtract(1, 'day').format('YYYY-MM-DD');
+	var TODAY = todayDate.format('YYYY-MM-DD');
+	var TOMORROW = todayDate.clone().add(1, 'day').format('YYYY-MM-DD');
+
+	$('#calendar').fullCalendar({
+		header: {
+			left: 'prev,next today',
+			center: 'title',
+			right: 'month,agendaWeek,agendaDay,listWeek'
+		},
+		editable: false,
+		eventLimit: true, // allow "more" link when too many events
+		navLinks: true,
+        aspectRatio: 2.3,
+		events: '/oncall/event_feed/',
+        eventRender: function(event, element) {
+            element.attr('data-url', event.data_url)
+        },
+        eventClick: function(calEvent, jsEvent, view) {
+            loadCalendarForm(calEvent.data_url)
+            //$(this).css('border-color', 'red');
+        },
+	});
+
+	function loadCalendarForm (url) {
+        //TODO combine with events.js
+        var btn = $(this);
+        $.ajax({
+          url: url,
+          type: 'get',
+          dataType: 'json',
+          beforeSend: function () {
+            $("#modal-event").modal("show");
+          },
+          success: function (data) {
+            $("#modal-event .modal-content").html(data.html_form);
+          }
+        });
+        return false;
+
+  };
+
+});
+</script>
+{% endblock %}
