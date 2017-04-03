@@ -33,9 +33,9 @@
           <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
                 <li><a href="#">Settings</a></li>
-                <li><a href="/oncall/logout">Logout</a></li>
+                <li><a href="/logout">Logout</a></li>
             {% else %}
-                <li><a href="/oncall/login">Login</a></li>
+                <li><a href="/login">Login</a></li>
             {% endif %}
           </ul>
         </div>
@@ -45,12 +45,12 @@
         <div class="row">
             <div class="col-sm-3 col-md-2 sidebar">
               <ul class="nav nav-sidebar">
-                <li class="{% if page_name == 'calendar' %} active {% endif %}"><a href="/oncall">Calendar</a></li>
+                <li class="{% if page_name == 'calendar' %} active {% endif %}"><a href="/">Calendar</a></li>
                 <li><a href="#">Users</a></li>
                 <li><a href="#">Reports</a></li>
               </ul>
               <ul class="nav nav-sidebar">
-                <li class="{% if page_name == 'test' %} active {% endif %}"><a href="/oncall/test">Test</a></li>
+                <li class="{% if page_name == 'test' %} active {% endif %}"><a href="/test">Test</a></li>
                 <li><a href="">Admin</a></li>
               </ul>
             </div>

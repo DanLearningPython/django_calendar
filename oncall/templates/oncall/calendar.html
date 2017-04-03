@@ -41,7 +41,7 @@ var todayDate = moment().startOf('day');
 		eventLimit: true, // allow "more" link when too many events
 		navLinks: true,
         aspectRatio: 2.3,
-		events: '/oncall/event_feed/',
+		events: '/event_feed/',
         eventRender: function(event, element) {
             element.attr('data-url', event.data_url)
         },
